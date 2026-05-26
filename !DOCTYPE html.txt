@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Management System</title>
+
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* reset */
         * {
@@ -14,11 +15,13 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f0f4f8;
             color: #333;
         }
+
         /* ---- login page ---- */
         #loginPage {
             display: flex;
@@ -27,6 +30,7 @@
             height: 100vh;
             background: #1a237e;
         }
+
         .login-box {
             background: white;
             padding: 40px;
@@ -34,16 +38,19 @@
             width: 360px;
             text-align: center;
         }
+
         .login-box h2 {
             margin-bottom: 6px;
             color: #1a237e;
             font-size: 22px;
         }
+
         .login-box p {
             font-size: 13px;
             color: #888;
             margin-bottom: 24px;
         }
+
         /* atm style pin display */
         .pin-display {
             background: #1a237e;
@@ -55,6 +62,7 @@
             margin-bottom: 20px;
             min-height: 58px;
         }
+
         /* numpad */
         .numpad {
             display: grid;
@@ -62,6 +70,7 @@
             gap: 10px;
             margin-bottom: 14px;
         }
+
         .numpad button {
             padding: 16px;
             font-size: 18px;
@@ -73,23 +82,28 @@
             cursor: pointer;
             transition: all 0.15s;
         }
+
         .numpad button:hover {
             background: #e8eaf6;
             border-color: #1a237e;
         }
+
         .numpad button:active {
             transform: scale(0.95);
         }
+
         .btn-del {
             background: #ffebee !important;
             color: #c62828 !important;
             border-color: #ffcdd2 !important;
         }
+
         .btn-clr {
             background: #fff8e1 !important;
             color: #e65100 !important;
             border-color: #ffe082 !important;
         }
+
         .btn-enter {
             width: 100%;
             padding: 14px;
@@ -103,17 +117,21 @@
             cursor: pointer;
             margin-bottom: 14px;
         }
+
         .btn-enter:hover {
             background: #283593;
         }
+
         .pin-hint {
             font-size: 12px;
             color: #999;
         }
+
         /* ---- main app ---- */
         #mainApp {
             display: none;
         }
+
         /* top navbar */
         .navbar {
             background: #1a237e;
@@ -123,29 +141,35 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .navbar-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .navbar-left h1 {
             font-size: 20px;
             font-weight: 700;
         }
+
         .navbar-left span {
             font-size: 12px;
             opacity: 0.7;
             display: block;
         }
+
         .navbar-right {
             display: flex;
             align-items: center;
             gap: 14px;
         }
+
         .user-info {
             text-align: right;
             font-size: 13px;
         }
+
         .logout-btn {
             background: rgba(255,255,255,0.15);
             color: white;
@@ -156,9 +180,11 @@
             font-size: 13px;
             cursor: pointer;
         }
+
         .logout-btn:hover {
             background: rgba(255,255,255,0.25);
         }
+
         /* tabs nav */
         .tabs {
             background: white;
@@ -168,6 +194,7 @@
             padding: 0 24px;
             overflow-x: auto;
         }
+
         .tab-btn {
             padding: 14px 18px;
             border: none;
@@ -181,26 +208,32 @@
             margin-bottom: -2px;
             white-space: nowrap;
         }
+
         .tab-btn.active {
             color: #1a237e;
             border-bottom-color: #1a237e;
         }
+
         .tab-btn:hover:not(.active) {
             color: #555;
         }
+
         /* page content area */
         .page-content {
             padding: 24px;
             max-width: 960px;
             margin: auto;
         }
+
         /* sections */
         .section {
             display: none;
         }
+
         .section.active {
             display: block;
         }
+
         /* alert message */
         .alert-msg {
             padding: 12px 16px;
@@ -209,21 +242,25 @@
             margin-bottom: 16px;
             display: none;
         }
+
         .alert-msg.success {
             background: #e8f5e9;
             color: #2e7d32;
             border-left: 4px solid #43a047;
         }
+
         .alert-msg.error {
             background: #ffebee;
             color: #c62828;
             border-left: 4px solid #ef5350;
         }
+
         .alert-msg.info {
             background: #e3f2fd;
             color: #1565c0;
             border-left: 4px solid #42a5f5;
         }
+
         /* card component */
         .card {
             background: white;
@@ -232,6 +269,7 @@
             margin-bottom: 16px;
             border: 1px solid #e8ecf0;
         }
+
         .card h3 {
             font-size: 15px;
             font-weight: 600;
@@ -241,6 +279,7 @@
             align-items: center;
             gap: 8px;
         }
+
         /* stat boxes on dashboard */
         .stats-grid {
             display: grid;
@@ -248,25 +287,30 @@
             gap: 14px;
             margin-bottom: 20px;
         }
+
         .stat-box {
             background: white;
             border-radius: 14px;
             padding: 18px;
             border: 1px solid #e8ecf0;
         }
+
         .stat-box .stat-label {
             font-size: 12px;
             color: #999;
             margin-bottom: 8px;
         }
+
         .stat-box .stat-value {
             font-size: 24px;
             font-weight: 700;
         }
+
         .stat-box .stat-value.green { color: #2e7d32; }
         .stat-box .stat-value.blue  { color: #1565c0; }
         .stat-box .stat-value.red   { color: #c62828; }
         .stat-box .stat-value.purple{ color: #4527a0; }
+
         /* 2-column chart area */
         .chart-grid {
             display: grid;
@@ -274,10 +318,12 @@
             gap: 14px;
             margin-bottom: 16px;
         }
+
         .chart-wrap {
             position: relative;
             height: 200px;
         }
+
         /* form stuff */
         .form-row {
             display: grid;
@@ -285,9 +331,11 @@
             gap: 12px;
             margin-bottom: 12px;
         }
+
         .form-row.single {
             grid-template-columns: 1fr;
         }
+
         .form-group label {
             display: block;
             font-size: 12px;
@@ -295,6 +343,7 @@
             margin-bottom: 5px;
             font-weight: 500;
         }
+
         .form-group input,
         .form-group select {
             width: 100%;
@@ -307,10 +356,12 @@
             outline: none;
             transition: border-color 0.2s;
         }
+
         .form-group input:focus,
         .form-group select:focus {
             border-color: #1a237e;
         }
+
         /* buttons */
         .btn {
             padding: 10px 20px;
@@ -322,12 +373,15 @@
             border: none;
             transition: opacity 0.15s;
         }
+
         .btn:hover { opacity: 0.85; }
+
         .btn-blue   { background: #1a237e; color: white; }
         .btn-green  { background: #2e7d32; color: white; }
         .btn-red    { background: #c62828; color: white; }
         .btn-amber  { background: #e65100; color: white; }
         .btn-full   { width: 100%; }
+
         /* account card (blue card style) */
         .acct-card {
             background: #1a237e;
@@ -338,6 +392,7 @@
             position: relative;
             overflow: hidden;
         }
+
         /* decorative circle on account card */
         .acct-card::before {
             content: '';
@@ -349,11 +404,13 @@
             border-radius: 50%;
             background: rgba(255,255,255,0.08);
         }
+
         .acct-card .name {
             font-size: 17px;
             font-weight: 600;
             margin-bottom: 4px;
         }
+
         .acct-card .acct-number {
             font-size: 12px;
             opacity: 0.65;
@@ -361,22 +418,26 @@
             margin-bottom: 14px;
             font-family: monospace;
         }
+
         .acct-card .balance {
             font-size: 28px;
             font-weight: 700;
         }
+
         .acct-card .acct-meta {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             margin-top: 6px;
         }
+
         .acct-card .acct-type {
             font-size: 11px;
             background: rgba(255,255,255,0.15);
             padding: 3px 10px;
             border-radius: 20px;
         }
+
         /* admin delete button on acct card */
         .acct-card .delete-btn {
             background: rgba(255,255,255,0.15);
@@ -388,9 +449,11 @@
             cursor: pointer;
             font-family: 'Poppins', sans-serif;
         }
+
         .acct-card .delete-btn:hover {
             background: rgba(220,0,0,0.4);
         }
+
         /* transaction list */
         .txn-list .txn-item {
             display: flex;
@@ -399,9 +462,11 @@
             padding: 12px 0;
             border-bottom: 1px solid #f0f0f0;
         }
+
         .txn-list .txn-item:last-child {
             border-bottom: none;
         }
+
         .txn-icon {
             width: 38px;
             height: 38px;
@@ -412,23 +477,30 @@
             font-size: 18px;
             flex-shrink: 0;
         }
+
         .txn-icon.credit { background: #e8f5e9; }
         .txn-icon.debit  { background: #ffebee; }
+
         .txn-info { flex: 1; }
+
         .txn-info .txn-title {
             font-size: 13px;
             font-weight: 500;
         }
+
         .txn-info .txn-sub {
             font-size: 11px;
             color: #999;
         }
+
         .txn-amount {
             font-size: 14px;
             font-weight: 600;
         }
+
         .txn-amount.credit { color: #2e7d32; }
         .txn-amount.debit  { color: #c62828; }
+
         /* badge pill */
         .badge {
             display: inline-block;
@@ -437,11 +509,13 @@
             font-size: 11px;
             font-weight: 500;
         }
+
         .badge-blue   { background: #e3f2fd; color: #1565c0; }
         .badge-green  { background: #e8f5e9; color: #2e7d32; }
         .badge-amber  { background: #fff8e1; color: #e65100; }
         .badge-red    { background: #ffebee; color: #c62828; }
         .badge-purple { background: #ede7f6; color: #4527a0; }
+
         /* loan items */
         .loan-item {
             display: flex;
@@ -451,20 +525,25 @@
             border-bottom: 1px solid #f0f0f0;
             gap: 12px;
         }
+
         .loan-item:last-child {
             border-bottom: none;
         }
+
         .loan-left { flex: 1; }
+
         .loan-left .loan-name {
             font-size: 13px;
             font-weight: 600;
             margin-bottom: 4px;
         }
+
         .loan-left .loan-meta {
             font-size: 12px;
             color: #888;
             margin-bottom: 8px;
         }
+
         /* progress bar for loan repayment */
         .progress-bar {
             height: 7px;
@@ -473,24 +552,29 @@
             overflow: hidden;
             margin-top: 6px;
         }
+
         .progress-fill {
             height: 100%;
             background: #1a237e;
             border-radius: 4px;
             transition: width 0.4s;
         }
+
         .loan-right {
             text-align: right;
         }
+
         .loan-right .loan-amount {
             font-size: 16px;
             font-weight: 700;
             color: #c62828;
         }
+
         .loan-right .loan-paid-pct {
             font-size: 11px;
             color: #888;
         }
+
         .pay-emi-btn {
             margin-top: 8px;
             padding: 5px 14px;
@@ -503,9 +587,11 @@
             font-weight: 500;
             cursor: pointer;
         }
+
         .pay-emi-btn:hover {
             background: #c8e6c9;
         }
+
         /* transfer arrow */
         .transfer-arrow {
             text-align: center;
@@ -513,6 +599,7 @@
             color: #bbb;
             padding: 6px 0;
         }
+
         /* emi preview box */
         .emi-box {
             background: #e8eaf6;
@@ -522,6 +609,7 @@
             font-size: 13px;
             font-weight: 500;
         }
+
         /* empty state */
         .empty-state {
             text-align: center;
@@ -529,6 +617,7 @@
             color: #bbb;
             font-size: 13px;
         }
+
         /* responsive */
         @media (max-width: 600px) {
             .form-row { grid-template-columns: 1fr; }
@@ -538,6 +627,7 @@
     </style>
 </head>
 <body>
+
 <!-- ========================
      LOGIN PAGE
 ========================= -->
@@ -545,8 +635,11 @@
     <div class="login-box">
         <h2>&#127968; NeoBank</h2>
         <p>Enter your 4-digit PIN to continue</p>
+
         <div class="pin-display" id="pinDisplay">_ _ _ _</div>
+
         <div id="loginAlert" class="alert-msg"></div>
+
         <!-- number pad -->
         <div class="numpad">
             <button onclick="pressPin('1')">1</button>
@@ -562,14 +655,19 @@
             <button onclick="pressPin('0')">0</button>
             <button class="btn-del" onclick="deletePin()">&#9003;</button>
         </div>
+
         <button class="btn-enter" onclick="doLogin()">&#128274; Login</button>
+
         <p class="pin-hint">User PIN: <b>1234</b> &nbsp;|&nbsp; Admin PIN: <b>0000</b></p>
     </div>
 </div>
+
+
 <!-- ========================
      MAIN APP
 ========================= -->
 <div id="mainApp">
+
     <!-- navbar -->
     <div class="navbar">
         <div class="navbar-left">
@@ -583,6 +681,7 @@
             <button class="logout-btn" onclick="doLogout()">Logout</button>
         </div>
     </div>
+
     <!-- tabs -->
     <div class="tabs">
         <button class="tab-btn active" onclick="openTab('dashboard', this)">&#128200; Dashboard</button>
@@ -592,12 +691,17 @@
         <button class="tab-btn" onclick="openTab('history', this)">&#128336; History</button>
         <button class="tab-btn" onclick="openTab('settings', this)">&#9881; Settings</button>
     </div>
+
     <div class="page-content">
+
         <!-- global alert -->
         <div id="appAlert" class="alert-msg"></div>
+
         <!-- ====== DASHBOARD ====== -->
         <div id="section-dashboard" class="section active">
+
             <div class="stats-grid" id="statsGrid"></div>
+
             <div class="chart-grid">
                 <div class="card" style="margin:0">
                     <h3>&#128202; Monthly Overview</h3>
@@ -612,6 +716,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="card">
                 <h3>&#128336; Recent Transactions</h3>
                 <div class="txn-list" id="recentTxns">
@@ -619,10 +724,13 @@
                 </div>
             </div>
         </div>
+
         <!-- ====== ACCOUNTS ====== -->
         <div id="section-accounts" class="section">
+
             <!-- account cards list -->
             <div id="acctCardsList"></div>
+
             <!-- create new account form -->
             <div class="card">
                 <h3>&#10133; Open New Account</h3>
@@ -640,4 +748,3 @@
                             <option>Salary</option>
                         </select>
                     </div>
-
